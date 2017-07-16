@@ -1,4 +1,6 @@
 class ReactionController < ApplicationController
+  before_action :authenticate_user!
+
   def reaction_handler
     post = Post.find(params[:post_id])
     # reaction = Reaction.where(user: current_user,post: post)

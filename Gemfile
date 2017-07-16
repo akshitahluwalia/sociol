@@ -45,4 +45,4 @@ group :development do
   gem 'spring'
 end
 gem 'devise'
-
+gem 'carrierwave', '~> 1.0'

@@ -16,27 +16,6 @@
   </div>
   <div class="post_actions">
     <ul>
-      <li>
-        <%= form_tag reaction_path(post_id = post.id,reaction_type = Reaction::LIKE ),remote:true do %>
-          <%= submit_tag("LIKE")%>
-        <% end %>
-      </li>
-      <li>
-        <%= form_tag reaction_path(post_id = post.id,reaction_type = Reaction::ANGRY),remote:true do %>
-            <%= submit_tag("angry")%>
-        <% end %>
-      </li>
-      <li>
-        <%= form_tag reaction_path(post_id = post.id,reaction_type = Reaction::SAD),remote:true do %>
-            <%= submit_tag("sad")%>
-        <% end %>
-      </li>
-      <li>
-        <%= form_tag reaction_path(post_id = post.id,reaction_type = Reaction::HAPPY),remote:true do %>
-            <%= submit_tag("happy")%>
-        <% end %>
-      </li>
-
       <li>Comment</li>
       <li>Share</li>
     </ul>

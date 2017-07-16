@@ -8,6 +8,8 @@ class User < ActiveRecord::Base
   validates :email, presence: true,uniqueness: { case_sensitive: false }
   has_many :posts,dependent: :destroy
   has_many :reactions,through: :posts
+  mount_uploader :profile, ProfileUploader
+
 
   def feed
   #   TODO feed should be on follow basis
