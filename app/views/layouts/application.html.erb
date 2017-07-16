@@ -38,6 +38,8 @@
     <div id="links-container">
       <ul>
         <li><%= link_to "Sign Out",destroy_user_session_path,method: :delete %></li>
+        <li><%= link_to "Network",network_path,method: :get %></li>
+
       </ul>
     </div>
 <% else %>

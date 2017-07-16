@@ -16,6 +16,26 @@
   </div>
   <div class="post_actions">
     <ul>
+      <li style="<%if post.liked? current_user.id%>background-color:red<% end%>">
+        <%= form_tag reaction_path(post_id = post.id,reaction_type = Reaction::LIKE ),remote:true do %>
+            <%= submit_tag("LIKE")%>
+        <% end %>
+      </li>
+      <li style="<%if post.angry? current_user.id%>background-color:red<% end%>">
+        <%= form_tag reaction_path(post_id = post.id,reaction_type = Reaction::ANGRY),remote:true do %>
+            <%= submit_tag("angry")%>
+        <% end %>
+      </li>
+      <li style="<%if post.sad? current_user.id%>background-color:red<% end%>">
+        <%= form_tag reaction_path(post_id = post.id,reaction_type = Reaction::SAD),remote:true do %>
+            <%= submit_tag("sad")%>
+        <% end %>
+      </li>
+      <li style="<%if post.happy? current_user.id%>background-color:red<% end%>">
+        <%= form_tag reaction_path(post_id = post.id,reaction_type = Reaction::HAPPY),remote:true do %>
+            <%= submit_tag("happy")%>
+        <% end %>
+      </li>
       <li>Comment</li>
       <li>Share</li>
     </ul>

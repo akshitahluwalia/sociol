@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   delete 'post/:id/remove' => 'post#remove'
   patch 'post/:id/update' => 'post#update'
   get 'home/index'
+  get 'network' => 'home#network' ,as: 'network'
   devise_for :users, :controllers => { registrations: 'registrations' }
   root to: "home#index"
 end
