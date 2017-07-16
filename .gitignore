@@ -15,3 +15,6 @@
 /log/*
 !/log/.keep
 /tmp
+
+# TODO Add ignore for all images
+/public/uploads/*

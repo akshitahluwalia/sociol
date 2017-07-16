@@ -3,12 +3,12 @@ class ReactionController < ApplicationController
 
   def reaction_handler
     post = Post.find(params[:post_id])
-    # reaction = Reaction.where(user: current_user,post: post)
-    reaction = Reaction.where(user: current_user, tweet: @tweet).first
+    reaction = Reaction.where(user: current_user,post: post).first
     reaction_type = params[:reaction_type]
-    if reaction.nil?
+    unless reaction.nil?
       reaction = Reaction.where(user: current_user,post: post).first
       reaction.destroy!
+      Reaction.create(user: current_user,post: post,reaction_type: reaction_type)
     else
       Reaction.create(user: current_user,post: post,reaction_type: reaction_type)
     end

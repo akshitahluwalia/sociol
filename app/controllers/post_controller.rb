@@ -8,7 +8,7 @@ class PostController < ApplicationController
 
     @post = Post.create(user:current_user,content: content,post_type: post_type,source:source)
     respond_to do |format|
-      return redirect_to root
+      return redirect_to '/'
     end
   end
 
