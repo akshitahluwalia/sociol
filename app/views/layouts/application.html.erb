@@ -1,12 +1,48 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Sociol</title>
+  <title>
+    <%  if user_signed_in?%>
+        <%= current_user.name.to_s.capitalize%> :
+    <% end %>
+    Sociol : The completely open social network.
+  </title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
+  <!-- Google Fonts Dependency-->
+  <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,500,600,700,800,900|Roboto:300,400,500,700" rel="stylesheet">
+  <!--MDL Dependency-->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
+  <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+  <!--Animate CSS-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
 </head>
 <body>
+<!--Devise Alerts + NOTYJS Alerts-->
+<% if notice%>
+    <script type="text/javascript">
+        noty({text: '<%= notice %>', type: 'alert',timeout: 500});
+    </script>
+<% end %>
+<% if alert%>
+    <script type="text/javascript">
+        noty({text: '<%= alert %>', type: 'alert',timeout: 500});
+    </script>
+<% end %>
+<% if user_signed_in? %>
+    <div id="search-container" >
+
+    </div>
+    <div id="links-container">
+      <ul>
+        <li><%= link_to "Sign Out",destroy_user_session_path,method: :delete %></li>
+      </ul>
+    </div>
+<% else %>
+    <!--Insert The Awesome header-->
+<% end %>
 
 <%= yield %>
 

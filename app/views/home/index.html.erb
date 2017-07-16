@@ -1,0 +1,11 @@
+<%=form_for @post ,url: post_create_path,remote: true do |f| %>
+    <%= f.text_area :content %>
+    <%= f.hidden_field :source,value: nil%>
+    <%= f.submit%>
+<% end %>
+
+<div id="posts">
+  <% @posts.each do |post| %>
+  <%= render "post/postview",post: post %>
+  <% end %>
+</div>

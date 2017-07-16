@@ -1,0 +1,44 @@
+<!--Partial should be provided with "post"-->
+<div id="<%= "post_" + post.id.to_s %>" class="post">
+  <div class="post_header">
+    <span class="author_name"><%= post.user.name %></span>
+    <span class="author_name"><%= post.user.username %></span>
+  </div>
+  <div class="post_content">
+    <% if post.post_type == Post::IMAGEPOST || post.post_type == Post::VIDEOPOST  %>
+    <div class="post_media">
+
+    </div>
+    <% end %>
+    <div class="post_text">
+      <p><%= post.content %></p>
+    </div>
+  </div>
+  <div class="post_actions">
+    <ul>
+      <li>
+        <%= form_tag reaction_path(post_id = post.id,reaction_type = Reaction::LIKE ),remote:true do %>
+          <%= submit_tag("LIKE")%>
+        <% end %>
+      </li>
+      <li>
+        <%= form_tag reaction_path(post_id = post.id,reaction_type = Reaction::ANGRY),remote:true do %>
+            <%= submit_tag("angry")%>
+        <% end %>
+      </li>
+      <li>
+        <%= form_tag reaction_path(post_id = post.id,reaction_type = Reaction::SAD),remote:true do %>
+            <%= submit_tag("sad")%>
+        <% end %>
+      </li>
+      <li>
+        <%= form_tag reaction_path(post_id = post.id,reaction_type = Reaction::HAPPY),remote:true do %>
+            <%= submit_tag("happy")%>
+        <% end %>
+      </li>
+
+      <li>Comment</li>
+      <li>Share</li>
+    </ul>
+  </div>
+</div>
