@@ -13,8 +13,8 @@ class PostController < ApplicationController
 
   def remove
     @post = Post.find(params[:id])
-    if @post.id == current_user.id
-      @post.destroy!
+    if @post.user.id == current_user.id
+      @post.destroy
     end
     respond_to do |format|
       format.js { }

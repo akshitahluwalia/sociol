@@ -14,6 +14,7 @@ class ReactionController < ApplicationController
     else
       Reaction.create(user: current_user, post: @post, reaction_type: @reaction_type)
     end
+    @reaction = Reaction.where(user: current_user, post: @post).first
     respond_to do |format|
       format.html {}
       format.js {}

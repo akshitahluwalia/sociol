@@ -1,5 +1,6 @@
 post_element = $('<%="#post_"+@post.id.to_s%>')
-post_element.addClass('animated zoomOutUp')
+post_element.addClass('animated fadeOutUpBig')
 //ADD DELAY HERE to delete
-post_element.remove()
-alert("REQUEST COMPLETED")
+setTimeout(function(){
+    post_element.remove()
+},800);

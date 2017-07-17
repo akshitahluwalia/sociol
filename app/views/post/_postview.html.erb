@@ -16,24 +16,24 @@
   </div>
   <div class="post_actions">
     <ul>
-      <li style="<%if post.liked? current_user.id%>background-color:red<% end%>">
+      <li>
         <%= form_tag reaction_path(post_id = post.id,reaction_type = Reaction::LIKE ),remote:true do %>
-            <%= submit_tag("LIKE")%>
+            <%= submit_tag "LIKE",:id => 'post_' + post.id.to_s + '_' + Reaction::LIKE.to_s ,style: if post.liked?(current_user.id) then 'background-color:red' else 'background-color:blue' end%>
         <% end %>
       </li>
-      <li style="<%if post.angry? current_user.id%>background-color:red<% end%>">
+      <li>
         <%= form_tag reaction_path(post_id = post.id,reaction_type = Reaction::ANGRY),remote:true do %>
-            <%= submit_tag("angry")%>
+            <%= submit_tag "ANGRY",:id => 'post_' + post.id.to_s + '_' + Reaction::ANGRY.to_s,style:if post.angry?(current_user.id) then 'background-color:red' else 'background-color:blue' end%>
         <% end %>
       </li>
-      <li style="<%if post.sad? current_user.id%>background-color:red<% end%>">
+      <li>
         <%= form_tag reaction_path(post_id = post.id,reaction_type = Reaction::SAD),remote:true do %>
-            <%= submit_tag("sad")%>
+            <%= submit_tag "SAD", :id => 'post_' + post.id.to_s + '_' + Reaction::SAD.to_s ,style:if post.sad?(current_user.id) then 'background-color:red' else 'background-color:blue' end%>
         <% end %>
       </li>
-      <li style="<%if post.happy? current_user.id%>background-color:red<% end%>">
+      <li>
         <%= form_tag reaction_path(post_id = post.id,reaction_type = Reaction::HAPPY),remote:true do %>
-            <%= submit_tag("happy")%>
+            <%= submit_tag "HAPPY", :id => 'post_' + post.id.to_s + '_' + Reaction::HAPPY.to_s,style: if post.happy?(current_user.id) then 'background-color:red' else 'background-color:blue' end%>
         <% end %>
       </li>
       <% if post.user.id == current_user.id%>
