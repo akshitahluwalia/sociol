@@ -1,0 +1,11 @@
+<div class="user">
+  <div class="user_details">
+    <div class="user_profile_thumb"><img src="<%= user.profile.url%>"></div>
+    <span class="user_name"><%= user.name %></span>
+    <span class="user_username"><%= user.username %></span>
+  </div>
+  <div class="user_action">
+    <%= link_to "FRIEND",create_friend_request_path(requested: user.id),method: :post,remote:true%>
+    <%= link_to "CANCEL REQUEST",delete_friend_request_path(request_id: FriendRequest.request_id(current_user.id,user.id)) ,method: :delete,remote:true%>
+  </div>
+</div>

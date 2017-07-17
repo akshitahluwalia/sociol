@@ -6,5 +6,6 @@ class HomeController < ApplicationController
   end
   def network
     @users = User.all
+    @friend_request = FriendRequest.new
   end
 end
