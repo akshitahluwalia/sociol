@@ -23,4 +23,17 @@ class PostController < ApplicationController
 
   def update
   end
+  def share
+    @post = Post.find(params[:id])
+    if @post.post_type == Post::SHARED
+      @post = @post.sub_post
+    end
+    content = params[:content]
+    Post.create(user:current_user,post_type: Post::SHARED,content: content,source: nil,post_source:@post.id)
+    @sub_post = @post
+    @post = Post.where(user:current_user,post_type: Post::SHARED,post_source:@post.id).first
+    respond_to do |format|
+      format.js{ }
+    end
+  end
 end

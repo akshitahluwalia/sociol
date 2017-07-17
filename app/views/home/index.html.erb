@@ -6,6 +6,6 @@
 
 <div id="posts">
   <% @posts.each do |post| %>
-  <%= render "post/postview",post: post %>
+  <%= render "post/postview",post: post,sub_post: post.sub_post %>
   <% end %>
 </div>

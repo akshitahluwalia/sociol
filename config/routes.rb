@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  post 'friend_mapping/:user/create' => 'friend_mapping#create',as: 'friend_mapping_create'
+  delete 'friend_mapping/:user/remove' => 'friend_mapping#remove',as: 'friend_mapping_remove'
+
   post 'friendrequest/:requested/create' => 'friendrequest#create',as: 'create_friend_request'
   delete 'friendrequest/:request_id/remove' => 'friendrequest#remove',as: 'delete_friend_request'
 
@@ -12,6 +15,7 @@ Rails.application.routes.draw do
   post 'post/create' ,as: 'post_create'
   delete 'post/:id/remove' => 'post#remove',as: 'post_remove'
   patch 'post/:id/update' => 'post#update',as: 'post_update'
+  post 'post/:id/share' => 'post#share',as: 'post_share'
   get 'home/index'
   get 'network' => 'home#network' ,as: 'network'
   devise_for :users, :controllers => { registrations: 'registrations' }

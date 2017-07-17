@@ -5,6 +5,7 @@ class Post < ActiveRecord::Base
   IMAGEPOST = 0
   VIDEOPOST = 1
   TEXTPOST = 2
+  SHARED = 3
 
   def liked? user_id
     return Reaction.find_by(post: self,user: User.find(user_id),reaction_type: Reaction::LIKE)
@@ -17,6 +18,10 @@ class Post < ActiveRecord::Base
   end
   def sad? user_id
     return Reaction.find_by(post: self,user: User.find(user_id),reaction_type: Reaction::SAD)
+  end
+
+  def sub_post
+    return Post.where(id: self.post_source).first
   end
 
 end
