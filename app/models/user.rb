@@ -13,6 +13,6 @@ class User < ActiveRecord::Base
 
   def feed
   #   TODO feed should be on follow basis
-    return Post.all
+    return Post.all.order(id: :desc)
   end
 end
