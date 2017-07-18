@@ -1,4 +1,4 @@
-noty({text: 'REQUEST from post <%= @post.id.to_s%>' ,type: 'alert',timeout: 500});
+noty({text: 'REQUEST from post <%= @post.id.to_s%>', type: 'alert', timeout: 500});
 
 post_element = document.getElementById('<%='post_'+@post.id.to_s %>')
 post_element_action = document.getElementById('<%='post_' + @post.id.to_s + '_' +@reaction_type.to_s %>')

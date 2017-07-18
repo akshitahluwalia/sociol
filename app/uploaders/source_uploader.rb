@@ -13,6 +13,7 @@ class SourceUploader < CarrierWave::Uploader::Base
   def store_dir
     "uploads/#{model.class.to_s}"
   end
+
   def cache_dir
     '/tmp/sociol-cache'
   end
@@ -43,9 +44,11 @@ class SourceUploader < CarrierWave::Uploader::Base
   def extension_whitelist
     %w(jpg jpeg gif png)
   end
+
   def content_type_whitelist
     /image\//
   end
+
   def content_type_blacklist
     ['application/text', 'application/json']
   end

@@ -1,11 +1,11 @@
-<%=form_for @post ,url: post_create_path,multipart: true,remote: true do |f| %>
+<%= form_for @post, url: post_create_path, multipart: true, remote: true do |f| %>
     <%= f.text_area :content %>
-    <%= f.file_field :source%>
-    <%= f.submit%>
+    <%= f.file_field :source %>
+    <%= f.submit %>
 <% end %>
 
 <div id="posts">
   <% @posts.each do |post| %>
-    <%= render "post/postview",post: post,sub_post: post.sub_post,empty_comment: @comment%>
+      <%= render "post/postview", post: post, sub_post: post.sub_post, empty_comment: @comment %>
   <% end %>
 </div>

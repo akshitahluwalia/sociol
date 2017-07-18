@@ -2,12 +2,12 @@
 <html>
 <head>
   <title>
-    <%  if user_signed_in?%>
-        <%= current_user.name.to_s.capitalize%> :
+    <% if user_signed_in? %>
+        <%= current_user.name.to_s.capitalize %> :
     <% end %>
     Sociol : The completely open social network.
   </title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
   <!-- Google Fonts Dependency-->
@@ -21,24 +21,24 @@
 </head>
 <body>
 <!--Devise Alerts + NOTYJS Alerts-->
-<% if notice%>
+<% if notice %>
     <script type="text/javascript">
-        noty({text: '<%= notice %>', type: 'alert',timeout: 500});
+        noty({text: '<%= notice %>', type: 'alert', timeout: 500});
     </script>
 <% end %>
-<% if alert%>
+<% if alert %>
     <script type="text/javascript">
-        noty({text: '<%= alert %>', type: 'alert',timeout: 500});
+        noty({text: '<%= alert %>', type: 'alert', timeout: 500});
     </script>
 <% end %>
 <% if user_signed_in? %>
-    <div id="search-container" >
+    <div id="search-container">
 
     </div>
     <div id="links-container">
       <ul>
-        <li><%= link_to "Sign Out",destroy_user_session_path,method: :delete %></li>
-        <li><%= link_to "Network",network_path,method: :get %></li>
+        <li><%= link_to "Sign Out", destroy_user_session_path, method: :delete %></li>
+        <li><%= link_to "Network", network_path, method: :get %></li>
 
       </ul>
     </div>

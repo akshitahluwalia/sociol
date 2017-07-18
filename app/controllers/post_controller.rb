@@ -1,13 +1,18 @@
 class PostController < ApplicationController
   before_action :authenticate_user!
+
   def create
     content = params["post"]["content"]
-    post_type = params["post"]["post_type"]
     source = params["post"]["source"]
-
-    @post = Post.create(user:current_user,content: content,post_type: post_type,source:source)
+    if source.nil?
+      post_type = Post::TEXTPOST
+    elsif
+      post_type = POST::IMAGEPOST
+    end
+    @post = Post.create(user: current_user, content: content, post_type: post_type, source: source)
     respond_to do |format|
-      format.js{}
+      format.js { }
+      format.any{ redirect_to :root}
     end
   end
 
@@ -24,23 +29,24 @@ class PostController < ApplicationController
       @post.destroy
     end
     respond_to do |format|
-      format.js { }
+      format.js {}
     end
   end
 
   def update
   end
+
   def share
     @post = Post.find(params[:id])
     if @post.post_type == Post::SHARED
       @post = @post.sub_post
     end
     content = params[:content]
-    Post.create(user:current_user,post_type: Post::SHARED,content: content,source: nil,post_source:@post.id)
+    Post.create(user: current_user, post_type: Post::SHARED, content: content, source: nil, post_source: @post.id)
     @sub_post = @post
-    @post = Post.where(user:current_user,post_type: Post::SHARED,post_source:@post.id).first
+    @post = Post.where(user: current_user, post_type: Post::SHARED, post_source: @post.id).first
     respond_to do |format|
-      format.js{ }
+      format.js {}
     end
   end
 end

@@ -1,8 +1,8 @@
 <h1>NETWORK</h1>
 <div id="users">
   <% unless @users.nil? %>
-    <% @users.each do |user| %>
-    <%= render 'users/userview',user: user %>
-    <% end %>
+      <% @users.each do |user| %>
+          <%= render 'users/userview', user: user %>
+      <% end %>
   <% end %>
 </div>

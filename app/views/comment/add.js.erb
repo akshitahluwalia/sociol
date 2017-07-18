@@ -1,2 +1,1 @@
-<h1>Comment#add</h1>
-<p>Find me in app/views/comment/add.html.erb</p>
+$('#comments').append("<%= escape_javascript (render 'comment/commentview',comment: @comment) %>");

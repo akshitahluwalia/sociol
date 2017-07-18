@@ -1,5 +1,5 @@
 class AddSharedAndParentPostToPosts < ActiveRecord::Migration
   def change
-  #   TODO Generate migrations
+    #   TODO Generate migrations
   end
 end

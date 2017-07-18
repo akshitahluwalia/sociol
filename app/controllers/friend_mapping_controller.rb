@@ -3,7 +3,7 @@ class FriendMappingController < ApplicationController
 
   def create
     user = params[:user]
-    FriendMapping.create(first: current_user.id,second:user)
+    FriendMapping.create(first: current_user.id, second: user)
   end
 
   def remove
