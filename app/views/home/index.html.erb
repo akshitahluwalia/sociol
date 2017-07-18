@@ -6,6 +6,6 @@
 
 <div id="posts">
   <% @posts.each do |post| %>
-  <%= render "post/postview",post: post,sub_post: post.sub_post,comment_empty_object: @comment%>
+    <%= render "post/postview",post: post,sub_post: post.sub_post,empty_comment: @comment%>
   <% end %>
 </div>

@@ -75,33 +75,25 @@
         <% end %>
       </li>
       <% if post.user.id == current_user.id %>
-          <li><%= link_to "DELETE", post_remove_path(id: post.id), method: :delete, remote: true %></li>
+          <li><%= link_to 'DELETE', post_remove_path(id: post.id), method: :delete, remote: true %></li>
       <% end %>
       <li>Comment</li>
-      <li><%= link_to "SHARE", post_share_path(id: post.id), method: :post, remote: true %></li>
+      <li><%= link_to 'SHARE', post_share_path(id: post.id), method: :post, remote: true %></li>
     </ul>
   </div>
 
   <div class="comment_container">
     <div class="comments">
-
       <%=  post.comments.each do |comment|%>
-          <% puts '>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>' %>
-          <% puts '>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>' %>
-          <% puts '>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>' %>
-          <% puts '>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>' %>
-          <% puts '>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>' %>
-          <% puts comment %>
         <%= render 'comment/commentview' , comment:comment %>
       <% end %>
     </div>
     <div class="new_comment">
-      <%= form_tag url: add_comment_path,remote:true do %>
-          <%= label_tag :content%>
-          <%= text_field_tag :content%>
-          <%= hidden_field_tag :post_id ,value: post.id %>
-          <%= submit_tag 'Comment' %>
-        <%=  %>
+      <%= form_for empty_comment ,url: add_comment_path , method: :post , remote: true do |f|%>
+          <%= f.label :content%>
+          <%= f.text_field :content%>
+          <%= f.hidden_field :post_id ,value: post.id %>
+          <%= f.submit 'Comment' %>
       <% end %>
     </div>
   </div>

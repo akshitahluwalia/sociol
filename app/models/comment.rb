@@ -7,6 +7,6 @@ class Comment < ActiveRecord::Base
     if Comment.where(comment_parent: self.id).nil? then return false else return true end
   end
   def sub_comments
-    return Comment.where(comment_patent: self.id )
+    return Comment.where(comment_parent: self.id )
   end
 end

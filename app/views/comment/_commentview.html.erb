@@ -1,29 +1,28 @@
 <div class="comment">
   <div class="commenter_info">
     <div class="commenter_image_thumb">@@@</div>
-    <span class="commenter_name"><%= comment.user.name%></span>
+    <span class="commenter_name"><%= comment.user.name %></span>
   </div>
   <div class="comment_content_container">
     <div class="comment_content"><%= comment.content %></div>
     <% if comment.has_sub_comments? %>
         <% comment.sub_comments.each do |sub_comment| %>
-          <%= render 'comment/subcommentview',sub_comment: sub_comment %>
+            <%= render 'comment/subcommentview', sub_comment: sub_comment %>
         <% end %>
     <% end %>
-    </div>
-<div class="comment_action">
-  <ul>
-    <li id="<%= 'comment_' + comment.id.to_s + '_action'%>">Like</li>
-    <li>Reply</li>
-  </ul>
-  <div class="reply_comment">
-    <%= form_for comment,url: add_nested_comment_path,remote:true do |f| %>
-        <%= f.label :content%>
-        <%= f.text_field :content%>
-        <%= f.hidden_field :comment_parent ,value: comment.id %>
-        <%= f.submit 'Comment' %>
-        <%=  %>
-    <% end %>
   </div>
-</div>
+  <div class="comment_action">
+    <ul>
+      <li id="<%= 'comment_' + comment.id.to_s + '_action' %>">Like</li>
+      <li>Reply</li>
+    </ul>
+    <div class="reply_comment">
+      <%= form_for comment, url: add_nested_comment_path, remote: true do |f| %>
+          <%= f.label :content %>
+          <%= f.text_field :content %>
+          <%= f.hidden_field :comment_parent, value: comment.id %>
+          <%= f.submit 'Comment' %>
+      <% end %>
+    </div>
+  </div>
 </div>
