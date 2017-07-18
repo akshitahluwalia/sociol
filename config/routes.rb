@@ -5,8 +5,8 @@ Rails.application.routes.draw do
   post 'friendrequest/:requested/create' => 'friendrequest#create',as: 'create_friend_request'
   delete 'friendrequest/:request_id/remove' => 'friendrequest#remove',as: 'delete_friend_request'
 
-  post 'comment/:post_id/add' => 'comment#add' ,as: 'add_comment'
-  post 'comment/:comment_id/add_nested' => 'comment#add_nested' ,as: 'add_nested_comment'
+  post 'comment/add' => 'comment#add' ,as: 'add_comment'
+  post 'comment/add_nested' => 'comment#add_nested' ,as: 'add_nested_comment'
   delete 'comment/:id/remove' => 'comment#remove' ,as: 'remove_comment'
   patch 'comment/:id/update' => 'comment#update', as: 'update_comment'
 

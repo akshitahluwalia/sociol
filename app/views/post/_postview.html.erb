@@ -81,4 +81,28 @@
       <li><%= link_to "SHARE", post_share_path(id: post.id), method: :post, remote: true %></li>
     </ul>
   </div>
+
+  <div class="comment_container">
+    <div class="comments">
+
+      <%=  post.comments.each do |comment|%>
+          <% puts '>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>' %>
+          <% puts '>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>' %>
+          <% puts '>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>' %>
+          <% puts '>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>' %>
+          <% puts '>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>' %>
+          <% puts comment %>
+        <%= render 'comment/commentview' , comment:comment %>
+      <% end %>
+    </div>
+    <div class="new_comment">
+      <%= form_tag url: add_comment_path,remote:true do %>
+          <%= label_tag :content%>
+          <%= text_field_tag :content%>
+          <%= hidden_field_tag :post_id ,value: post.id %>
+          <%= submit_tag 'Comment' %>
+        <%=  %>
+      <% end %>
+    </div>
+  </div>
 </div>

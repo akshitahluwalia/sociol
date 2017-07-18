@@ -1,6 +1,7 @@
 class Post < ActiveRecord::Base
   belongs_to :user
   has_many :reactions,dependent: :destroy
+  has_many :comments,dependent: :destroy
   mount_uploader :source, SourceUploader
   IMAGEPOST = 0
   VIDEOPOST = 1
@@ -22,6 +23,10 @@ class Post < ActiveRecord::Base
 
   def sub_post
     return Post.where(id: self.post_source).first
+  end
+
+  def shared_me_posts
+    return Post.where(post_source: self.id)
   end
 
 end

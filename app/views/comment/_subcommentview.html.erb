@@ -1,0 +1,12 @@
+<div class="sub_comment" id=<%= 'sub_comment_' + sub_comment.id.to_s %>>
+  <div class="sub_commenter_info">
+    <div class="sub_commenter_image_thumb">&&&</div>
+    <span class="sub_commenter_name"><%= sub_comment.user.name %></span>
+  </div>
+  <div class="sub_comment_action">
+    <ul>
+      <li id= <%= 'sub_comment_' + sub_comment.id.to_s + '_action'%>>Like</li>
+    </ul>
+  </div>
+</div>
+</div>

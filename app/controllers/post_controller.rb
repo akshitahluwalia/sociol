@@ -14,6 +14,13 @@ class PostController < ApplicationController
   def remove
     @post = Post.find(params[:id])
     if @post.user.id == current_user.id
+      unless @post.shared_me_posts.nil?
+        share_posts = @post.shared_me_posts
+        puts share_posts
+        share_posts.each do |post|
+          post.destroy
+        end
+      end
       @post.destroy
     end
     respond_to do |format|
