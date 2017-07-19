@@ -49,4 +49,5 @@ Rails.application.configure do
       :authentication => "plain",
       :enable_starttls_auto => true
   }
+  # config.serve_static_files = true
 end

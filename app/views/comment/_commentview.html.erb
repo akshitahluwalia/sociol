@@ -1,6 +1,6 @@
 <div class="comment">
   <div class="commenter_info">
-    <div class="commenter_image_thumb">@@@</div>
+    <div class="commenter_image_thumb"><%= image_tag comment.user.profile.url %></div>
     <span class="commenter_name"><%= comment.user.name %></span>
   </div>
   <div class="comment_content_container" id="<%= 'comment_' + comment.id.to_s + '_container' %>">

@@ -7,7 +7,7 @@ class PostController < ApplicationController
     if source.nil?
       post_type = Post::TEXTPOST
     elsif
-      post_type = POST::IMAGEPOST
+      post_type = Post::IMAGEPOST
     end
     @post = Post.create(user: current_user, content: content, post_type: post_type, source: source)
     respond_to do |format|
@@ -41,8 +41,7 @@ class PostController < ApplicationController
     if @post.post_type == Post::SHARED
       @post = @post.sub_post
     end
-    content = params[:content]
-    Post.create(user: current_user, post_type: Post::SHARED, content: content, source: nil, post_source: @post.id)
+    Post.create(user: current_user, post_type: Post::SHARED, content: nil, source: nil, post_source: @post.id)
     @sub_post = @post
     @post = Post.where(user: current_user, post_type: Post::SHARED, post_source: @post.id).first
     respond_to do |format|

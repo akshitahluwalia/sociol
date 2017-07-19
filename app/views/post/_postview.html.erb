@@ -1,12 +1,18 @@
 <!--Partial should be provided with "post"-->
 <div id="<%= "post_" + post.id.to_s %>" class="post">
   <div class="post_header">
+    <div class="author_profile_thumb">
+      <%= image_tag post.user.profile.url %>
+    </div>
     <span class="author_name"><%= post.user.name %></span>
     <span class="author_username"><%= post.user.username %></span>
   </div>
   <% if post.post_type == Post::SHARED %>
       <div class="post_content_container">
         <div class="sub_post_header">
+          <div class="author_profile_thumb">
+            <%= image_tag sub_post.user.profile.url %>
+          </div>
           <span class="author_name"><%= sub_post.user.name %></span>
           <span class="author_username"><%= sub_post.user.username %></span>
           <% unless FriendMapping.has_mapping current_user.id, sub_post.user.id %>
@@ -17,7 +23,7 @@
           <% if sub_post.post_type == Post::IMAGEPOST || sub_post.post_type == Post::VIDEOPOST %>
               <%  if sub_post.post_type == Post::IMAGEPOST %>
                 <div class="sub_post_media">
-
+                  <%= image_tag sub_post.source.url %>
                 </div>
               <% end %>
           <% end %>
@@ -31,7 +37,11 @@
   <% else %>
       <div class="post_content_container">
         <% if post.post_type == Post::IMAGEPOST || post.post_type == Post::VIDEOPOST %>
-            <div class="post_media"></div>
+            <%  if post.post_type == Post::IMAGEPOST %>
+                <div class="post_media">
+                  <img src="<%= post.source.url%>" />
+                </div>
+            <% end %>
         <% end %>
         <% unless post.content.nil? %>
             <div class="post_content">
