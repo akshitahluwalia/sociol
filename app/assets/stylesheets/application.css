@@ -13,15 +13,17 @@
  *= require_tree .
  *= require_self
  */
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: 'Roboto', sans-serif;
 }
-body{
+
+body {
     background-color: lightgray;
 }
-a{
+
+a {
     text-decoration: none;
 }

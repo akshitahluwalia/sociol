@@ -4,5 +4,4 @@ class Reaction < ActiveRecord::Base
   LIKE = 0
   HAPPY = 1
   SAD = 2
-  ANGRY = 3
 end

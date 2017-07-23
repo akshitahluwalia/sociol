@@ -3,9 +3,10 @@
     <%= f.file_field :source %>
     <%= f.submit %>
 <% end %>
-
-<div id="posts">
-  <% @posts.each do |post| %>
-      <%= render "post/postview", post: post, sub_post: post.sub_post, empty_comment: @comment %>
-  <% end %>
+<div class="home_main_container">
+  <div id="posts">
+    <% @posts.each do |post| %>
+        <%= render "post/postview", post: post, sub_post: post.sub_post, empty_comment: @comment %>
+    <% end %>
+  </div>
 </div>

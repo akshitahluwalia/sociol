@@ -3,13 +3,12 @@ noty({text: 'REQUEST from post <%= @post.id.to_s%>', type: 'alert', timeout: 500
 post_element = document.getElementById('<%='post_'+@post.id.to_s %>')
 post_element_action = document.getElementById('<%='post_' + @post.id.to_s + '_' +@reaction_type.to_s %>')
 
-document.getElementById('<%='post_' + @post.id.to_s + '_' +Reaction::ANGRY.to_s %>').style.backgroundColor = 'blue'
-document.getElementById('<%='post_' + @post.id.to_s + '_' +Reaction::SAD.to_s %>').style.backgroundColor = 'blue'
-document.getElementById('<%='post_' + @post.id.to_s + '_' +Reaction::LIKE.to_s %>').style.backgroundColor = 'blue'
-document.getElementById('<%='post_' + @post.id.to_s + '_' +Reaction::HAPPY.to_s %>').style.backgroundColor = 'blue'
+document.getElementById('<%='post_' + @post.id.to_s + '_' +Reaction::SAD.to_s %>').style.color = 'gray'
+document.getElementById('<%='post_' + @post.id.to_s + '_' +Reaction::LIKE.to_s %>').style.color = 'gray'
+document.getElementById('<%='post_' + @post.id.to_s + '_' +Reaction::HAPPY.to_s %>').style.color = 'gray'
 
 <% if @reaction.nil? %>
-post_element_action.style.backgroundColor = 'blue'
+post_element_action.style.color = 'gray'
 <% else %>
-post_element_action.style.backgroundColor = 'red'
+post_element_action.style.color = 'blue'
 <% end %>

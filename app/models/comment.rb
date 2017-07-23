@@ -5,7 +5,7 @@ class Comment < ActiveRecord::Base
   NESTED = true
 
   def has_sub_comments?
-    if Comment.where(comment_parent: self.id,nested: Comment::NESTED).nil? then
+    if Comment.where(comment_parent: self.id, nested: Comment::NESTED).nil? then
       return false
     else
       return true
@@ -13,6 +13,6 @@ class Comment < ActiveRecord::Base
   end
 
   def sub_comments
-    return Comment.where(comment_parent: self.id,nested: Comment::NESTED)
+    return Comment.where(comment_parent: self.id, nested: Comment::NESTED)
   end
 end

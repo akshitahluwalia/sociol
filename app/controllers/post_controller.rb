@@ -6,13 +6,12 @@ class PostController < ApplicationController
     source = params["post"]["source"]
     if source.nil?
       post_type = Post::TEXTPOST
-    elsif
-      post_type = Post::IMAGEPOST
+    elsif post_type = Post::IMAGEPOST
     end
     @post = Post.create(user: current_user, content: content, post_type: post_type, source: source)
     respond_to do |format|
-      format.js { }
-      format.any{ redirect_to :root}
+      format.js {}
+      format.any {redirect_to :root}
     end
   end
 

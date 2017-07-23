@@ -1,3 +1,115 @@
-// Place all the styles related to the home controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+
+div.home_main_container {
+  width: 95vw;
+  height: 95vh;
+  display: flex;
+  justify-content: center;
+
+  div#posts {
+    width: 500px;
+    flex-grow: 0;
+    flex-shrink: 0;
+    div.post {
+      background-color: white;
+      display: inline-block;
+      width: 100%;
+      padding: 12px;
+      margin: 5px auto;
+
+      div.post_header {
+        position: relative;
+        span.author_name {
+          display: inline-block;
+          position: absolute;
+          left: 60px;
+          padding: 2px;
+
+        }
+        span.posting_time {
+          display: inline-block;
+          position: absolute;
+          top: 20px;
+          left: 60px;
+          color: grey;
+          padding: 2px;
+        }
+      }
+      div.post_content_container {
+        width: 100%;
+        height: auto;
+        padding: 10px 0;
+        div.post_media {
+          width: 100%;
+          height: auto;
+          margin-bottom: 20px;
+          img {
+            width: 100%;
+            height: auto;
+          }
+
+        }
+        div.post_content {
+          p {
+            white-space: pre-wrap; /* Webkit */
+            white-space: -moz-pre-wrap; /* Firefox */
+            white-space: -o-pre-wrap; /* Opera 7 */
+            word-wrap: break-word;
+          }
+        }
+      }
+      div.post_actions {
+        ul {
+          display: flex;
+          justify-content: flex-start;
+          li {
+            list-style: none;
+          }
+        }
+
+      }
+      div.comment_container {
+        div.comments {
+
+        }
+        div.new_comment {
+          form {
+          }
+        }
+      }
+    }
+
+  }
+}
+
+div.profile_thumb {
+  width: 40px;
+  height: 40px;
+  display: inline-block;
+  img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+  }
+}
+
+div.profile_thumb_comment {
+  width: 30px;
+  height: 30px;
+  display: inline-block;
+  img {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+  }
+}
+
+div.sub_post {
+  border: 1px solid gray;
+  padding: 10px;
+}
+
+div.comment_field {
+  border: none;
+  background-color: transparent;
+}
+
