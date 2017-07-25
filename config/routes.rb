@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
-  get 'profiles/profile:get'
+  get 'profile/:username' => 'profiles#profile', as: 'profile'
 
-  get 'profiles/update:post'
+  post 'profile/update'
 
   post 'friend_mapping/:user/create' => 'friend_mapping#create', as: 'friend_mapping_create'
   delete 'friend_mapping/:user/remove' => 'friend_mapping#remove', as: 'friend_mapping_remove'

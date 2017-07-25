@@ -37,13 +37,33 @@
 <% if user_signed_in? %>
     <header>
       <div id="header_wrapper">
-        <div id="search-container">
+        <div id="logo_container">
+          <h1>sociol</h1>
+        </div>
+        <div id="search_container">
+          <input type="text" id="search_field"/>
+          <i class="material-icons">search</i>
         </div>
         <div id="links-container">
-          <ul>
-            <li><%= link_to "Sign Out", destroy_user_session_path, method: :delete %></li>
-            <li><%= link_to "Network", network_path, method: :get %></li>
-          </ul>
+          <button class="mdl-button mdl-js-button mdl-button--icon">
+            <i class="material-icons">person_outline</i>
+          </button>
+          <button class="mdl-button mdl-js-button mdl-button--icon">
+            <i class="material-icons">exit_to_app</i>
+          </button>
+          <button class="mdl-button mdl-js-button mdl-button--icon">
+            <i class="material-icons">assignment_ind</i>
+          </button>
+          <button class="mdl-button mdl-js-button mdl-button--icon">
+            <i class="material-icons">notifications</i>
+          </button>
+          <%= link_to destroy_user_session_path, method: :delete do %>
+          <% end %>
+          <%= link_to network_path, method: :get do %>
+              <button class="mdl-button mdl-js-button mdl-button--icon">
+                <i class="material-icons">public</i>
+              </button>
+          <% end %>
         </div>
       </div>
     </header>
