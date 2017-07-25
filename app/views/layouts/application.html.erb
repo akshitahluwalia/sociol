@@ -35,16 +35,18 @@
     </script>
 <% end %>
 <% if user_signed_in? %>
-    <div id="search-container">
-    </div>
-    <div id="links-container">
-      <ul>
-        <li><%= link_to "Sign Out", destroy_user_session_path, method: :delete %></li>
-        <li><%= link_to "Network", network_path, method: :get %></li>
-      </ul>
-    </div>
-<% else %>
-    <!--Insert The Awesome header-->
+    <header>
+      <div id="header_wrapper">
+        <div id="search-container">
+        </div>
+        <div id="links-container">
+          <ul>
+            <li><%= link_to "Sign Out", destroy_user_session_path, method: :delete %></li>
+            <li><%= link_to "Network", network_path, method: :get %></li>
+          </ul>
+        </div>
+      </div>
+    </header>
 <% end %>
 
 <%= yield %>

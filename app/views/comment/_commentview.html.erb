@@ -5,25 +5,25 @@
   </div>
   <div class="comment_content_container" id="<%= 'comment_' + comment.id.to_s + '_container' %>">
     <div class="comment_content"><%= comment.content %></div>
+    <div class="comment_action">
+      <!--<span>Like</span>-->
+      <div class="reply_comment">
+        <%= form_tag add_nested_comment_path, remote: true do %>
+            <%= text_field_tag :content, nil, options= {:placeholder => 'Add your comment here'} %>
+            <%= hidden_field_tag :comment_parent, comment.id %>
+            <%= hidden_field_tag :sub_comments_container_id, 'sub_comment_' + comment.id.to_s + '_container' %>
+            <%= button_tag '', {type: 'submit', class: 'mdl-button mdl-js-button mdl-button--icon'} do %>
+                <i class="material-icons" style="font-size: 20px">insert_comment</i>
+            <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <div class="sub_comments" id="<%= 'sub_comment_' + comment.id.to_s + '_container' %>">
     <% if comment.has_sub_comments? %>
         <% comment.sub_comments.each do |sub_comment| %>
             <%= render 'comment/subcommentview', sub_comment: sub_comment %>
         <% end %>
     <% end %>
-  </div>
-  <div class="comment_action">
-    <ul>
-      <li id="<%= 'comment_' + comment.id.to_s + '_action' %>">Like</li>
-      <li>Reply</li>
-    </ul>
-    <div class="reply_comment">
-      <%= form_tag add_nested_comment_path, remote: true do %>
-          <%= label_tag :content %>
-          <%= text_field_tag :content %>
-          <%= hidden_field_tag :comment_parent, comment.id %>
-          <%= hidden_field_tag :comment_container_id, 'comment_' + comment.id.to_s + '_container' %>
-          <%= submit_tag 'Comment' %>
-      <% end %>
-    </div>
   </div>
 </div>

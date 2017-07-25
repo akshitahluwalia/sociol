@@ -45,7 +45,10 @@
               <%= f.password_field :password_confirmation, autocomplete: "off", class: 'mdl-textfield__input' %>
             </div>
             <div class="actions">
-              <%= f.submit "Sign up" %>
+              <%= link_to new_session_path(resource_name) do %>
+                  <%= button_tag 'Log in', class: "mdl-button mdl-js-button mdl-button--primary" %>
+              <% end %>
+              <%= f.button "Sign up", type: 'submit', class: 'mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored' %>
             </div>
         <% end %>
       </div>

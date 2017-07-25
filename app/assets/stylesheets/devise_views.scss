@@ -3,23 +3,23 @@ body {
     width: 100vw;
     height: 100vh;
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
     align-items: center;
     div.main_card {
-      height: 80vh;
-      width: 80vw;
+      height: 500px;
+      width: 800px;
       display: inline-block;
       box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 5px 10px rgba(0, 0, 0, 0.24);
       div#main_branding {
-        width: 50vw;
-        height: 80vh;
+        width: 400px;
+        height: 100%;
         float: left;
         position: relative;
 
         div#main_branding_content {
           position: absolute;
-          width: 50vw;
-          height: 80vh;
+          width: 400px;
+          height: 100%;
           display: flex;
           justify-content: space-around;
           padding-top: 125px;
@@ -33,21 +33,23 @@ body {
         div#main_branding_glass {
           position: absolute;
           background-color: rgba(0, 120, 255, 0.8);
-          width: 50vw;
-          height: 80vh;
+          width: 400px;
+          height: 100%;
         }
         div#main_branding_background {
           position: absolute;
+          height: auto;
+          width: 400px;
           img {
-            width: 50vw;
-            height: 80vh;
+            height: 500px;
+            width: 400px;
             object-fit: cover;
           }
         }
         div#main_branding_tagline {
           position: absolute;
-          width: 50vw;
-          height: 80vh;
+          width: 400px;
+          height: 100%;
           display: flex;
           justify-content: space-around;
           padding-top: 250px;
@@ -55,16 +57,16 @@ body {
           h2 {
             font-family: 'Raleway', sans-serif;
             font-weight: 500;
-            font-size: 40px;
+            font-size: 25px;
             color: lightblue;
           }
         }
       }
       div#essential_form {
-        height: 80vh;
-        width: 30vw;
+        width: 400px;
+        height: 100%;
         float: right;
-        padding: 40px;
+        padding: 20px;
         h2 {
           font-family: 'Raleway', sans-serif;
           font-weight: 500;

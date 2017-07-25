@@ -1,131 +1,134 @@
 <!--Partial should be provided with "post"-->
 <div id="<%= "post_" + post.id.to_s %>" class="post mdl-card mdl-shadow--5dp main_card">
-  <div class="post_header">
-    <div class="author_profile_thumb profile_thumb">
-      <%= image_tag post.user.profile.url %>
+  <div class="post_internal_separator">
+    <div class="post_header">
+      <div class="author_profile_thumb profile_thumb">
+        <%= image_tag post.user.profile.url %>
+      </div>
+      <span class="author_name"><%= post.user.name %></span>
+      <span class="posting_time"><%= post.updated_at.to_formatted_s(:short) %></span>
     </div>
-    <span class="author_name"><%= post.user.name %></span>
-    <span class="posting_time"><%= post.updated_at.to_formatted_s(:short) %></span>
-  </div>
-  <% if post.post_type == Post::SHARED %>
-      <div class="post_content_container">
-        <div class='sub_post'>
-          <div class="sub_post_header">
-            <div class="author_profile_thumb profile_thumb">
-              <%= image_tag sub_post.user.profile.url %>
+    <% if post.post_type == Post::SHARED %>
+        <div class="post_content_container">
+          <div class='sub_post'>
+            <div class="post_header">
+              <div class="profile_thumb">
+                <%= image_tag sub_post.user.profile.url %>
+              </div>
+              <span class="author_name"><%= sub_post.user.name %></span>
+              <span class="posting_time"><%= sub_post.updated_at.to_formatted_s(:short) %></span>
             </div>
-            <span class="author_name"><%= sub_post.user.name %></span>
-            <% unless FriendMapping.has_mapping current_user.id, sub_post.user.id %>
-                <span><%= link_to 'FRIEND', create_friend_request_path(requested: sub_post.user.id), id: 'post_' + post.id.to_s + '_friendlink', remote: true, data: {:from => 'post_' + post.id.to_s + '_friendlink'} %></span>
-            <% end %>
-          </div>
-          <div class="sub_post_content_container">
-            <% if sub_post.post_type == Post::IMAGEPOST || sub_post.post_type == Post::VIDEOPOST %>
-                <% if sub_post.post_type == Post::IMAGEPOST %>
-                    <div class="sub_post_media">
-                      <%= image_tag sub_post.source.url %>
-                    </div>
-                <% end %>
-            <% end %>
-            <% unless sub_post.content.nil? %>
-                <div class="sub_post_content">
-                  <p><%= sub_post.content %></p>
-                </div>
-            <% end %>
+            <div class="sub_post_content_container">
+              <% if sub_post.post_type == Post::IMAGEPOST || sub_post.post_type == Post::VIDEOPOST %>
+                  <% if sub_post.post_type == Post::IMAGEPOST %>
+                      <div class="sub_post_media">
+                        <%= image_tag sub_post.source.url %>
+                      </div>
+                  <% end %>
+              <% end %>
+              <% unless sub_post.content.nil? %>
+                  <div class="sub_post_content">
+                    <p><%= sub_post.content %></p>
+                  </div>
+              <% end %>
+            </div>
           </div>
         </div>
-      </div>
-  <% else %>
-      <div class="post_content_container">
-        <% if post.post_type == Post::IMAGEPOST || post.post_type == Post::VIDEOPOST %>
-            <% if post.post_type == Post::IMAGEPOST %>
-                <div class="post_media">
-                  <img src="<%= post.source.url %>"/>
-                </div>
-            <% end %>
-        <% end %>
-        <% unless post.content.nil? %>
-            <div class="post_content">
-              <p><%= post.content %></p>
-            </div>
-        <% end %>
-      </div>
-  <% end %>
-  <div class="post_actions">
-    <ul>
-      <li>
-        <%= form_tag reaction_path(post_id = post.id, reaction_type = Reaction::LIKE), remote: true do %>
-            <%= button_tag '', :id => 'post_' + post.id.to_s + '_' + Reaction::LIKE.to_s, class: 'mdl-button mdl-js-button mdl-button--icon', style: if post.liked?(current_user.id) then
-                                                                                                                                                       'color: blue'
-                                                                                                                                                     else
-                                                                                                                                                       'color:gray'
-                                                                                                                                                     end do %>
-                <i class="material-icons">thumb_up</i>
+    <% else %>
+        <div class="post_content_container">
+          <% if post.post_type == Post::IMAGEPOST || post.post_type == Post::VIDEOPOST %>
+              <% if post.post_type == Post::IMAGEPOST %>
+                  <div class="post_media">
+                    <img src="<%= post.source.url %>"/>
+                  </div>
+              <% end %>
+          <% end %>
+          <% unless post.content.nil? %>
+              <div class="post_content">
+                <p><%= post.content %></p>
+              </div>
+          <% end %>
+        </div>
+    <% end %>
+    <div class="post_actions">
+      <ul>
+        <li>
+          <%= form_tag reaction_path(post_id = post.id, reaction_type = Reaction::LIKE), remote: true do %>
+              <%= button_tag '', :id => 'post_' + post.id.to_s + '_' + Reaction::LIKE.to_s, class: 'mdl-button mdl-js-button mdl-button--icon', style: if post.liked?(current_user.id) then
+                                                                                                                                                         'color: blue'
+                                                                                                                                                       else
+                                                                                                                                                         'color:gray'
+                                                                                                                                                       end do %>
+                  <i class="material-icons">thumb_up</i>
 
-            <% end %>
+              <% end %>
 
-        <% end %>
-      </li>
-      <li>
-        <%= form_tag reaction_path(post_id = post.id, reaction_type = Reaction::HAPPY), remote: true do %>
-            <%= button_tag '', :id => 'post_' + post.id.to_s + '_' + Reaction::HAPPY.to_s, class: 'mdl-button mdl-js-button mdl-button--icon', style: if post.happy?(current_user.id) then
+          <% end %>
+        </li>
+        <li>
+          <%= form_tag reaction_path(post_id = post.id, reaction_type = Reaction::HAPPY), remote: true do %>
+              <%= button_tag '', :id => 'post_' + post.id.to_s + '_' + Reaction::HAPPY.to_s, class: 'mdl-button mdl-js-button mdl-button--icon', style: if post.happy?(current_user.id) then
+                                                                                                                                                          'color: blue'
+                                                                                                                                                        else
+                                                                                                                                                          'color:gray'
+                                                                                                                                                        end do %>
+                  <i class="material-icons">mood</i>
+
+              <% end %>
+
+          <% end %>
+        </li>
+        <li>
+          <%= form_tag reaction_path(post_id = post.id, reaction_type = Reaction::SAD), remote: true do %>
+              <%= button_tag '', :id => 'post_' + post.id.to_s + '_' + Reaction::SAD.to_s, class: 'mdl-button mdl-js-button mdl-button--icon', style: if post.sad?(current_user.id) then
                                                                                                                                                         'color: blue'
                                                                                                                                                       else
                                                                                                                                                         'color:gray'
                                                                                                                                                       end do %>
-                <i class="material-icons">mood</i>
+                  <i class="material-icons">mood_bad</i>
 
-            <% end %>
+              <% end %>
 
-        <% end %>
-      </li>
-      <li>
-        <%= form_tag reaction_path(post_id = post.id, reaction_type = Reaction::SAD), remote: true do %>
-            <%= button_tag '', :id => 'post_' + post.id.to_s + '_' + Reaction::SAD.to_s, class: 'mdl-button mdl-js-button mdl-button--icon', style: if post.sad?(current_user.id) then
-                                                                                                                                                      'color: blue'
-                                                                                                                                                    else
-                                                                                                                                                      'color:gray'
-                                                                                                                                                    end do %>
-                <i class="material-icons">mood_bad</i>
+          <% end %>
+        </li>
 
-            <% end %>
-
-        <% end %>
-      </li>
-
-      <li><%= button_tag '', class: "mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect", style: 'color:gray' do %>
-            <i class="material-icons">comment</i>
-        <% end %></li>
-      <li>
-        <%= link_to post_share_path(id: post.id), method: :post, remote: true do %>
-            <%= button_tag '', class: "mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect", style: 'color:gray' do %>
-                <i class="material-icons">share</i>
-            <% end %>
-        <% end %>
-      </li>
-    </ul>
-  </div>
-  <% if post.user.id == current_user.id %>
-      <%= content_tag :div, class: "mdl-card__menu" do %>
-          <%= link_to post_remove_path(id: post.id), method: :delete, remote: true do %>
-              <%= button_tag '', class: "mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect" do %>
-                  <i class="material-icons">clear</i>
+        <li><%= button_tag '', class: "mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect", style: 'color:gray' do %>
+              <i class="material-icons">comment</i>
+          <% end %></li>
+        <li>
+          <%= link_to post_share_path(id: post.id), method: :post, remote: true do %>
+              <%= button_tag '', class: "mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect", style: 'color:gray' do %>
+                  <i class="material-icons">share</i>
               <% end %>
           <% end %>
-      <% end %>
-  <% end %>
-
+        </li>
+      </ul>
+    </div>
+    <% if post.user.id == current_user.id %>
+        <%= content_tag :div, class: "mdl-card__menu" do %>
+            <%= link_to post_remove_path(id: post.id), method: :delete, remote: true do %>
+                <%= button_tag '', class: "mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect" do %>
+                    <i class="material-icons">clear</i>
+                <% end %>
+            <% end %>
+        <% end %>
+    <% end %>
+  </div>
   <div class="comment_container">
     <div class="comments">
       <% post.comments.each do |comment| %>
-          <%= render 'comment/commentview', comment: comment %>
+          <% unless comment.nested %>
+              <%= render 'comment/commentview', comment: comment %>
+          <% end %>
       <% end %>
     </div>
     <div class="new_comment">
       <%= form_tag add_comment_path, method: :post, remote: true do |f| %>
-          <%= text_field_tag :content, class: 'comment_field' %>
+          <%= text_field_tag :content, nil, {:class => 'comment_field', :placeholder => 'Type your comment here'} %>
           <%= hidden_field_tag :post_id, post.id %>
-          <%= submit_tag 'Comment' %>
+          <%= button_tag '', {type: 'submit', class: 'mdl-button mdl-js-button mdl-button--icon'} do %>
+              <i class="material-icons" style="font-size: 20px">insert_comment</i>
+          <% end %>
       <% end %>
 
     </div>

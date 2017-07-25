@@ -1,0 +1,19 @@
+header {
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  div#header_wrapper {
+    width: 1080px;
+    height: 50px;
+    background-color: green;
+  }
+  div#links-container {
+    ul {
+      display: flex;
+      li {
+        list-style: none;
+      }
+    }
+  }
+}

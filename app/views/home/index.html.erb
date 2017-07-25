@@ -4,9 +4,12 @@
     <%= f.submit %>
 <% end %>
 <div class="home_main_container">
+  <div id="main_left_section"></div>
   <div id="posts">
     <% @posts.each do |post| %>
         <%= render "post/postview", post: post, sub_post: post.sub_post, empty_comment: @comment %>
     <% end %>
   </div>
+  <div id="main_right_section"></div>
+
 </div>
