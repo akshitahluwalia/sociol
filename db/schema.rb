@@ -14,76 +14,76 @@
 ActiveRecord::Schema.define(version: 20170717171231) do
 
   create_table "comments", force: :cascade do |t|
-    t.string "content"
-    t.integer "user_id"
-    t.integer "post_id"
-    t.boolean "nested"
-    t.integer "comment_parent"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string   "content"
+    t.integer  "user_id"
+    t.integer  "post_id"
+    t.boolean  "nested"
+    t.integer  "comment_parent"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
   end
 
   add_index "comments", ["post_id"], name: "index_comments_on_post_id"
   add_index "comments", ["user_id"], name: "index_comments_on_user_id"
 
   create_table "friend_mappings", force: :cascade do |t|
-    t.integer "first"
-    t.integer "second"
+    t.integer  "first"
+    t.integer  "second"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "friend_requests", force: :cascade do |t|
-    t.integer "requester"
-    t.integer "requested"
+    t.integer  "requester"
+    t.integer  "requested"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "posts", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "post_type"
-    t.string "content"
-    t.string "source"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer "post_source"
+    t.integer  "user_id"
+    t.integer  "post_type"
+    t.string   "content"
+    t.string   "source"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.integer  "post_source"
   end
 
   add_index "posts", ["user_id"], name: "index_posts_on_user_id"
 
   create_table "reactions", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "post_id"
-    t.integer "reaction_type"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "user_id"
+    t.integer  "post_id"
+    t.integer  "reaction_type"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
   end
 
   add_index "reactions", ["post_id"], name: "index_reactions_on_post_id"
   add_index "reactions", ["user_id"], name: "index_reactions_on_user_id"
 
   create_table "users", force: :cascade do |t|
-    t.string "email", default: "", null: false
-    t.string "encrypted_password", default: "", null: false
-    t.string "reset_password_token"
+    t.string   "email",                  default: "", null: false
+    t.string   "encrypted_password",     default: "", null: false
+    t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer "sign_in_count", default: 0, null: false
+    t.integer  "sign_in_count",          default: 0,  null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
-    t.string "current_sign_in_ip"
-    t.string "last_sign_in_ip"
-    t.string "confirmation_token"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
+    t.string   "confirmation_token"
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
-    t.string "unconfirmed_email"
-    t.string "name"
-    t.string "username"
-    t.string "profile"
-    t.string "bio"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string   "unconfirmed_email"
+    t.string   "name"
+    t.string   "username"
+    t.string   "profile"
+    t.string   "bio"
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

@@ -1,0 +1,14 @@
+<div class="request" id="<%= 'request_' + request.id.to_s %>" >
+  <div class="requester_info">
+    <img src="<%= User.find(request.requester).profile.url%>">
+    <div class="requester_name"><%= User.find(request.requester).name%></div>
+  </div>
+  <div class="request_action">
+    <%= link_to friend_mapping_create_path(user: request.requester), method: :post, remote: true do %>
+        <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">Accept</button>
+    <% end %>
+    <%= link_to delete_friend_request_path(request_id: request.id), method: :post, remote: true do %>
+        <button class="mdl-button mdl-js-button"></button>
+    <% end %>
+  </div>
+</div>

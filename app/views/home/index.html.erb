@@ -1,14 +1,28 @@
 <div class="home_main_container">
-  <div id="main_left_section"></div>
+  <div id="main_left_section">
+    <div id="left_content">
+      <div id="profile_container">
+        <div id="profile_cover"><img src="/images/cover_image.jpg"></div>
+        <div id="profile_image"><img src="<%= current_user.profile.url %>"></div>
+        <div id="profile_info">
+          <div id="profile_name"><%= current_user.name.upcase %></div>
+          <div id="profile_bio"><%= current_user.bio %></div>
+        </div>
+      </div>
+      <div id="gdg_branding">
+        <img src="images/gdg.png">
+      </div>
+    </div>
+  </div>
   <div id="center_section">
     <div id="create_post">
       <%= form_for @post, url: post_create_path, multipart: true, remote: true do |f| %>
-          <%= f.text_area :content , options ={placeholder: 'Share a photo or update'}%>
+          <%= f.text_area :content, options ={placeholder: 'Share a photo or update'} %>
           <%= f.button options ={class: "mdl-button mdl-js-button", type: 'button', id: 'photo_button'} do %>
               <i class="material-icons">photo_camera</i>
           <% end %>
-          <%= f.file_field :source, options ={hidden: true,id: 'new_post_file_field'} %>
-          <%= f.button options = {type: :submit,class: 'mdl-button mdl-js-button mdl-js-ripple-effect '}%>
+          <%= f.file_field :source, options ={hidden: true, id: 'new_post_file_field'} %>
+          <%= f.button options = {type: :submit, class: 'mdl-button mdl-js-button mdl-js-ripple-effect '} %>
 
       <% end %>
       <img src="#" class="hidden" id="new_post_thumb">
@@ -20,6 +34,17 @@
     </div>
   </div>
 
-  <div id="main_right_section"></div>
+  <div id="main_right_section">
+    <div id="right_content">
+      <div id="suggestions">
+        <div id="suggestion_title">Suggestions</div>
+        <div id="suggestion_container">
+          <% User.all.each do |user| %>
+              <%= render 'users/userlinear', user: user %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
 
 </div>

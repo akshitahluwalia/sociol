@@ -1,8 +1,41 @@
-<h1>NETWORK</h1>
-<div id="users">
-  <% unless @users.nil? %>
-      <% @users.each do |user| %>
-          <%= render 'users/userview', user: user %>
+<div class="network_main_container">
+  <div id="network_left_section">
+    <div id="left_content">
+      <div id="profile_container">
+        <div id="profile_cover"><img src="/images/cover_image.jpg"></div>
+        <div id="profile_image"><img src="<%= current_user.profile.url %>"></div>
+        <div id="profile_info">
+          <div id="profile_name"><%= current_user.name.upcase %></div>
+          <div id="profile_bio"><%= current_user.bio %></div>
+        </div>
+      </div>
+      <div id="gdg_branding">
+        <img src="images/gdg.png">
+      </div>
+    </div>
+  </div>
+  <div id="network_center_section">
+    <% if @friend_requests %>
+  <div id="requests">
+    <% @friend_requests.each do |request| %>
+      <%= render 'friendrequest/linear_request',request: request %>
+    <% end %>
+    </div>
+    <% end %>
+
+    <div id="users">
+      <% unless @users.nil? %>
+          <% @users.each do |user| %>
+              <%= render 'users/userview', user: user %>
+          <% end %>
       <% end %>
-  <% end %>
+    </div>
+  </div>
+
+  <div id="network_right_section">
+    <div id="right_content">
+      <img src="/images/ad.jpg">
+    </div>
+  </div>
+
 </div>

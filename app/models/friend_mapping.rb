@@ -6,4 +6,7 @@ class FriendMapping < ActiveRecord::Base
       return true
     end
   end
+  def self.mapping first, second
+      return FriendMapping.where(first: first, second: second).first || FriendMapping.where(first: second, second: first).first
+  end
 end

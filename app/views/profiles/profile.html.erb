@@ -1,2 +1,27 @@
-<h1>Profiles#profile:get</h1>
-<p>Find me in app/views/profiles/profile:get.html.erb</p>
+<div id="profile_main_container">
+  <div id="profile_container">
+    <div id="profile_cover"><img src="/images/cover_image.jpg"></div>
+    <div id="profile_pic"><img src="<%= @user.profile.url %>"></div>
+    <div id="profile_info">
+      <div id="profile_name"><%= @user.name.upcase %></div>
+      <div id="profile_bio"><%= @user.bio %></div>
+
+      <% if FriendMapping.has_mapping current_user.id , @user.id %>
+          <%= link_to friend_mapping_destroy_path(mapping_id: FriendMapping.mapping(current_user.id , @user.id).id), method: :delete do %>
+              <button class="mdl-button mdl-js-button mdl-js-ripple-effect">Remove Friend</button>
+          <% end %>
+      <% else %>
+          <% unless current_user.username == @user.username %>
+              <%= link_to create_friend_request_path(requested: @user.id), method: :post, remote: true do %>
+                  <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored">Add Friend</button>
+              <% end %>
+          <% end %>
+      <% end %>
+    </div>
+  </div>
+  <div id="user_posts">
+    <% @posts.each do |post| %>
+        <%= render "post/postview", post: post, sub_post: post.sub_post, empty_comment: @comment %>
+    <% end %>
+  </div>
+</div>

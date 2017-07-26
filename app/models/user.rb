@@ -10,9 +10,26 @@ class User < ActiveRecord::Base
   has_many :reactions, through: :posts
   mount_uploader :profile, ProfileUploader
 
+  def friends
+    firstlist = FriendMapping.where(first:self.id).pluck(:second)
+    secondlist = FriendMapping.where(second:self.id).pluck(:first)
+    list = []
+    firstlist.each do |element|
+      list << element
+    end
+    secondlist.each do |element|
+      list << element
+    end
+
+    return list
+  end
 
   def feed
-    #   TODO feed should be on follow basis
-    return Post.all.order(id: :desc)
+    feedlist = self.friends
+    feedlist << self.id
+    return Post.where(user_id: feedlist).order(created_at: :desc)
+  end
+  def suggestions
+
   end
 end

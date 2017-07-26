@@ -108,7 +108,7 @@
         <%= content_tag :div, class: "mdl-card__menu" do %>
             <%= link_to post_remove_path(id: post.id), method: :delete, remote: true do %>
                 <%= button_tag '', class: "mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect" do %>
-                    <i class="material-icons">clear</i>
+                    <i class="material-icons" style="color: lightgray">clear</i>
                 <% end %>
             <% end %>
         <% end %>

@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   post 'profile/update'
 
   post 'friend_mapping/:user/create' => 'friend_mapping#create', as: 'friend_mapping_create'
-  delete 'friend_mapping/:user/remove' => 'friend_mapping#remove', as: 'friend_mapping_remove'
+  delete 'friend_mapping/:mapping_id/remove' => 'friend_mapping#remove', as: 'friend_mapping_destroy'
 
   post 'friendrequest/:requested/create' => 'friendrequest#create', as: 'create_friend_request'
   delete 'friendrequest/:request_id/remove' => 'friendrequest#remove', as: 'delete_friend_request'

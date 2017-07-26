@@ -9,6 +9,6 @@ class HomeController < ApplicationController
 
   def network
     @users = User.all
-    @friend_request = FriendRequest.new
+    @friend_requests = FriendRequest.where(requested: current_user.id)
   end
 end

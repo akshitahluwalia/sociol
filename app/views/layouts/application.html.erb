@@ -44,26 +44,27 @@
           <input type="text" id="search_field"/>
           <i class="material-icons">search</i>
         </div>
+
         <div id="links-container">
-          <button class="mdl-button mdl-js-button mdl-button--icon">
-            <i class="material-icons">person_outline</i>
-          </button>
-          <button class="mdl-button mdl-js-button mdl-button--icon">
-            <i class="material-icons">exit_to_app</i>
-          </button>
-          <button class="mdl-button mdl-js-button mdl-button--icon">
-            <i class="material-icons">assignment_ind</i>
-          </button>
-          <button class="mdl-button mdl-js-button mdl-button--icon">
-            <i class="material-icons">notifications</i>
-          </button>
-          <%= link_to destroy_user_session_path, method: :delete do %>
-          <% end %>
           <%= link_to network_path, method: :get do %>
               <button class="mdl-button mdl-js-button mdl-button--icon">
                 <i class="material-icons">public</i>
               </button>
           <% end %>
+          <button class="mdl-button mdl-js-button mdl-button--icon">
+            <i class="material-icons">notifications</i>
+          </button>
+          <%= link_to profile_path(current_user.username) do %>
+              <button class="mdl-button mdl-js-button mdl-button--icon">
+                <i class="material-icons">person_outline</i>
+              </button>
+          <% end %>
+          <%= link_to destroy_user_session_path, method: :delete do %>
+              <button class="mdl-button mdl-js-button mdl-button--icon">
+                <i class="material-icons">exit_to_app</i>
+              </button>
+          <% end %>
+
         </div>
       </div>
     </header>
