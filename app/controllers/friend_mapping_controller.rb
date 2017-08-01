@@ -20,3 +20,4 @@ class FriendMappingController < ApplicationController
     end
   end
 end
+0
